@@ -16,18 +16,9 @@ Brief introduction to the project, its purpose, and main objectives.
    git clone https://github.com/username/repository-name.git
    cd repository-name
    ```
-2. Install Poetry (if not already installed):
-   ```bash
-   pip install poetry
-   ```
-3. Install Dependencies:
-   ```bash
-   poetry install
-   ```
-4. Activate the Virtual Environment:
-   ```bash
-   poetry shell
-   ```
+2. Install Prerequisites
+   - [Terraform](https://developer.hashicorp.com/terraform/downloads) (version >= 1.10.0)
+   - [AWS CLI](https://aws.amazon.com/cli/) (version >= 2.15.23)
 
 ---
 
