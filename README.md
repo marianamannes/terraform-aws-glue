@@ -16,10 +16,13 @@ Brief introduction to the project, its purpose, and main objectives.
    git clone https://github.com/username/repository-name.git
    cd repository-name
    ```
-2. Install Prerequisites
+2. Install Prerequisites 
    - [Terraform](https://developer.hashicorp.com/terraform/downloads) (version >= 1.10.0)
    - [AWS CLI](https://aws.amazon.com/cli/) (version >= 2.15.23)
-
+3. Configure AWS CLI
+   ```bash
+    aws configure
+   ```
 ---
 
 ## Architecture
@@ -35,6 +38,6 @@ Image of architecture
 ---
 
 ## References
-- Links to official documentation (AWS Glue, Poetry, etc.).
-- Any other useful resources or guides.
-
+- [Authenticating using IAM user credentials for the AWS CLI](https://docs.aws.amazon.com/cli/v1/userguide/cli-authentication-user.html)
+- [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+- [Terraform Best Practices](https://www.terraform-best-practices.com/)
