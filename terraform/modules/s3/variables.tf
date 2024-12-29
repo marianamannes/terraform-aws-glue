@@ -12,3 +12,13 @@ variable "s3_bucket_names" {
   type        = list(string)
   description = "list of names for the s3 buckets"
 }
+
+variable "mock_data_files" {
+  type        = list(string)
+  description = "list of files to upload to the source bucket"
+}
+
+variable "mock_data_path" {
+  type        = string
+  description = "path to the mock_data directory containing files to upload"
+}
