@@ -36,7 +36,7 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 ## How to Set Up
 
 ### Local Setup
-1. **Clone the Repository**
+1. Clone the Repository
    
    ```bash
    git clone https://github.com/marianamannes/terraform-aws-glue
@@ -49,13 +49,16 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
    ```bash
     aws configure
    ```
-4. Initialize Terraform
+4. Initialize Terraform Backend
    ```bash
-    cd terraform
+    cd terraform/modules/remote-state
     terraform init
+    terraform apply
    ```
 5. Apply changes
    ```bash
+    cd ../../
+    terraform init
     terraform apply
    ```
 
