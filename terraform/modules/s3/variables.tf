@@ -5,7 +5,7 @@ variable "account_id" {
 
 variable "prefix" {
   type        = string
-  description = "prefix for the bucket names"
+  description = "prefix for the project name"
 }
 
 variable "s3_bucket_names" {

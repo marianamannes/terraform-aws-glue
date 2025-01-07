@@ -28,7 +28,9 @@ module "s3" {
 }
 
 module "glue" {
-  source = "./modules/glue"
+  source        = "./modules/glue"
+  prefix        = var.prefix
+  source_bucket = module.s3.bucket_names[0]
 }
 
 module "iam" {
