@@ -18,11 +18,15 @@ locals {
   mock_data_path  = "${path.module}/../mock_data"
 }
 
-module "s3_source" {
+module "s3" {
   source          = "./modules/s3"
   account_id      = data.aws_caller_identity.current.account_id
   prefix          = var.prefix
   s3_bucket_names = var.s3_bucket_names
   mock_data_files = local.mock_data_files
   mock_data_path  = local.mock_data_path
+}
+
+module "glue" {
+  source = "./modules/glue"
 }
