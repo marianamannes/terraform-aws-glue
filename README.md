@@ -69,3 +69,4 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 - [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [Terraform Best Practices](https://www.terraform-best-practices.com/)
 - [S3 Terraform Backend](https://developer.hashicorp.com/terraform/language/backend/s3)
+- [Configure IAM for Glue](https://docs.aws.amazon.com/glue/latest/dg/configure-iam-for-glue.html)

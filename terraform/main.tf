@@ -30,3 +30,9 @@ module "s3" {
 module "glue" {
   source = "./modules/glue"
 }
+
+module "iam" {
+  source     = "./modules/iam"
+  account_id = data.aws_caller_identity.current.account_id
+  prefix     = var.prefix
+}
