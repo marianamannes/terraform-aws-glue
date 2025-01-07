@@ -7,3 +7,13 @@ output "s3_uploaded_files" {
   description = "List of uploaded files to the source S3 bucket."
   value       = module.s3.uploaded_files
 }
+
+output "glue_role_arn" {
+  description = "glue role arn"
+  value       = module.iam.glue_role_arn
+}
+
+output "glue_role_name" {
+  description = "glue role name"
+  value       = module.iam.glue_role_name
+}

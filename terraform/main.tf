@@ -31,6 +31,7 @@ module "glue" {
   source        = "./modules/glue"
   prefix        = var.prefix
   source_bucket = module.s3.bucket_names[0]
+  glue_role_arn = module.iam.glue_role_arn
 }
 
 module "iam" {
