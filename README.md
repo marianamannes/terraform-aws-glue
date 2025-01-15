@@ -1,6 +1,6 @@
-# ETL with AWS Glue, S3, Aurora and Terraform
+# ETL with AWS Glue, S3, Athena and Terraform
 
-This project applies IaC with Terraform to manage the infrastructure for an ETL pipeline, processing CSV data using AWS Glue and transferring it from S3 to Aurora MySQL.
+This project applies IaC with Terraform to manage the infrastructure for an ETL pipeline, processing CSV data using AWS Glue and enabling data consumption directly from S3 using Amazon Athena.
 
 ---
 
@@ -16,7 +16,7 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 
 - **Uploading Files:** CSV files from the `mock_data/` directory are uploaded to the source bucket.
 
-- **Configuring IAM Roles:** Permissions are set up to allow Glue and Aurora to interact with S3.
+- **Configuring IAM Roles:** Permissions are set up to allow Glue to interact with S3.
 
 - **Setting Up AWS Glue:** 
   - A database catalogs the data schema.
@@ -25,7 +25,7 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 
 - **Configuring Triggers:** Automates workflows to run on file uploads to the source bucket.
 
-- **Setting Up Aurora MySQL:** A database and table are provisioned to manage Parquet data in S3.
+- **Setting Up Athena:** A query is created in Amazon Athena to directly consume and analyze Parquet data stored in S3.
 
 - **Implementing GitHub Actions:** CI/CD pipelines automate Terraform deployments for efficient infrastructure management.
 
@@ -33,7 +33,7 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 
 ---
 
-## How to Set Up
+## How to run the project
 
 ### Local Setup
 1. Clone the Repository
@@ -61,6 +61,8 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
     terraform init
     terraform apply
    ```
+5. Query transformed data with Athena
+   <img src="img/athena.png">
 
 ---
 
