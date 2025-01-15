@@ -62,6 +62,7 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
     terraform apply
    ```
 5. Query transformed data with Athena
+
    <img src="img/athena.png">
 
 ---
