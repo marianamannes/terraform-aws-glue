@@ -48,7 +48,16 @@ resource "aws_glue_job" "aws_glue_job" {
 
 resource "aws_glue_trigger" "aws_job_trigger" {
   name = "${var.prefix}-job-trigger"
-  type = "ON_DEMAND"
+  type = "CONDITIONAL"
+
+  predicate {
+    conditions {
+      crawler_name = aws_glue_crawler.aws_glue_crawler.name
+      crawl_state = "SUCCEEDED"
+      logical_operator = "EQUALS"
+    }
+  }
+
   actions {
     job_name = aws_glue_job.aws_glue_job.name
   }
