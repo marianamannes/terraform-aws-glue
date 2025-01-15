@@ -11,6 +11,16 @@ resource "aws_s3_object" "mock_data_files" {
   bucket = aws_s3_bucket.buckets[0].bucket
   key    = each.key
   source = "${var.mock_data_path}/${each.key}"
+  source_hash = filemd5("${var.mock_data_path}/${each.key}")
+  acl    = "private"
+
+}
+
+resource "aws_s3_object" "glue_job" {
+  bucket = aws_s3_bucket.buckets[2].bucket
+  key    = "${var.prefix}-${var.glue_script_file}"
+  source = "${var.glue_script_path}/${var.glue_script_file}"
+  source_hash = filemd5("${var.glue_script_path}/${var.glue_script_file}")
   acl    = "private"
 
 }

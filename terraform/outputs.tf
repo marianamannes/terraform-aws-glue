@@ -8,6 +8,11 @@ output "s3_uploaded_files" {
   value       = module.s3.uploaded_files
 }
 
+output "s3_glue_script" {
+  description = "glue script uploaded to the s3 bucket"
+  value       = module.s3.glue_script
+}
+
 output "glue_role_arn" {
   description = "glue role arn"
   value       = module.iam.glue_role_arn

@@ -22,3 +22,13 @@ variable "mock_data_path" {
   type        = string
   description = "path to the mock_data directory containing files to upload"
 }
+
+variable "glue_script_file" {
+  type        = string
+  description = "glue script file"
+}
+
+variable "glue_script_path" {
+  type        = string
+  description = "path to the glue script directory"
+}

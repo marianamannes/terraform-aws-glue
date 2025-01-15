@@ -13,10 +13,43 @@ resource "aws_glue_crawler" "aws_glue_crawler" {
   }
 }
 
-resource "aws_glue_trigger" "aws_glue_trigger" {
+resource "aws_glue_trigger" "aws_crawler_trigger" {
   name = "${var.prefix}-crawler-trigger"
   type = "ON_DEMAND"
   actions {
     crawler_name = aws_glue_crawler.aws_glue_crawler.name
+  }
+}
+
+resource "aws_glue_job" "aws_glue_job" {
+  name     = "${var.prefix}-glue-job"
+  role_arn = var.glue_role_arn
+
+  command {
+    script_location = "s3://${var.script_bucket}/${var.s3_glue_script}"
+    python_version  = "3"
+  }
+
+  glue_version        = "3.0"
+  default_arguments = {
+    "--JOB_NAME"      = "${var.prefix}-glue-job"
+    "--DATABASE_NAME" = aws_glue_catalog_database.aws_glue_catalog_database.name
+    "--TABLE_NAME"    = replace(var.source_bucket, "-", "_")
+    "--TARGET_BUCKET" = "s3://${var.target_bucket}"
+    "--job-bookmark-option" = "job-bookmark-enable"
+  }
+
+  depends_on = [
+    aws_glue_crawler.aws_glue_crawler,
+    aws_glue_trigger.aws_crawler_trigger
+  ]
+
+}
+
+resource "aws_glue_trigger" "aws_job_trigger" {
+  name = "${var.prefix}-job-trigger"
+  type = "ON_DEMAND"
+  actions {
+    job_name = aws_glue_job.aws_glue_job.name
   }
 }

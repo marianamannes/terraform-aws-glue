@@ -54,7 +54,6 @@
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::crawler-public*",
                 "arn:aws:s3:::tf-glue-project*"
             ]
         },
