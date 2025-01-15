@@ -3,8 +3,8 @@ resource "aws_glue_catalog_database" "aws_glue_catalog_database" {
   location_uri = "s3://${var.source_bucket}"
 }
 
-resource "aws_glue_crawler" "aws_glue_crawler" {
-  name          = "${var.prefix}-crawler"
+resource "aws_glue_crawler" "aws_source_crawler" {
+  name          = "${var.prefix}-source-crawler"
   database_name = aws_glue_catalog_database.aws_glue_catalog_database.name
   role          = var.glue_role_arn
 
@@ -13,11 +13,11 @@ resource "aws_glue_crawler" "aws_glue_crawler" {
   }
 }
 
-resource "aws_glue_trigger" "aws_crawler_trigger" {
-  name = "${var.prefix}-crawler-trigger"
+resource "aws_glue_trigger" "aws_source_crawler_trigger" {
+  name = "${var.prefix}-source-crawler-trigger"
   type = "ON_DEMAND"
   actions {
-    crawler_name = aws_glue_crawler.aws_glue_crawler.name
+    crawler_name = aws_glue_crawler.aws_source_crawler.name
   }
 }
 
@@ -40,8 +40,8 @@ resource "aws_glue_job" "aws_glue_job" {
   }
 
   depends_on = [
-    aws_glue_crawler.aws_glue_crawler,
-    aws_glue_trigger.aws_crawler_trigger
+    aws_glue_crawler.aws_source_crawler,
+    aws_glue_trigger.aws_source_crawler_trigger
   ]
 
 }
@@ -52,7 +52,7 @@ resource "aws_glue_trigger" "aws_job_trigger" {
 
   predicate {
     conditions {
-      crawler_name = aws_glue_crawler.aws_glue_crawler.name
+      crawler_name = aws_glue_crawler.aws_source_crawler.name
       crawl_state = "SUCCEEDED"
       logical_operator = "EQUALS"
     }
@@ -60,5 +60,33 @@ resource "aws_glue_trigger" "aws_job_trigger" {
 
   actions {
     job_name = aws_glue_job.aws_glue_job.name
+  }
+}
+
+resource "aws_glue_crawler" "aws_target_crawler" {
+  name          = "${var.prefix}-target-crawler"
+  database_name = aws_glue_catalog_database.aws_glue_catalog_database.name
+  role          = var.glue_role_arn
+
+  s3_target {
+    path = "s3://${var.target_bucket}/"
+  }
+  
+}
+
+resource "aws_glue_trigger" "aws_target_crawler_trigger" {
+  name = "${var.prefix}-target-crawler-trigger"
+  type = "CONDITIONAL"
+
+  actions {
+    crawler_name = aws_glue_crawler.aws_target_crawler.name
+  }
+
+  predicate {
+    conditions {
+      logical_operator = "EQUALS"
+      job_name         = aws_glue_job.aws_glue_job.name
+      state            = "SUCCEEDED"
+    }
   }
 }
