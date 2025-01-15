@@ -21,7 +21,7 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 - **Setting Up AWS Glue:** 
   - A database catalogs the data schema.
   - A crawler detects and updates the schema.
-  - A job transforms CSV files into Parquet format using PySpark.
+  - A job transforms CSV files into Parquet format.
 
 - **Configuring Triggers:** Automates workflows to run on file uploads to the source bucket.
 
