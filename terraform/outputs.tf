@@ -22,3 +22,13 @@ output "glue_role_name" {
   description = "glue role name"
   value       = module.iam.glue_role_name
 }
+
+output "source_bucket_arn" {
+  value       = module.s3.source_bucket_arn
+  description = "arn of the source bucket"
+}
+
+output "source_crawler_name" {
+  value       = module.glue.source_crawler_name
+  description = "source crawler name"
+}

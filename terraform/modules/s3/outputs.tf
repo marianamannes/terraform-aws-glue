@@ -12,3 +12,8 @@ output "glue_script" {
   description = "glue script uploaded to the s3 bucket"
   value       = aws_s3_object.glue_job.key
 }
+
+output "source_bucket_arn" {
+  value = aws_s3_bucket.buckets[0].arn
+  description = "arn of the source bucket"
+}

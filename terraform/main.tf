@@ -47,3 +47,12 @@ module "iam" {
   account_id = data.aws_caller_identity.current.account_id
   prefix     = var.prefix
 }
+
+module "lambda" {
+  source            = "./modules/lambda"
+  prefix            = var.prefix
+  crawler_name      = module.glue.source_crawler_name
+  source_bucket     = module.s3.bucket_names[0]
+  source_bucket_arn = module.s3.source_bucket_arn
+  lambda_role_arn   = module.iam.lambda_role_arn
+}

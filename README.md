@@ -16,14 +16,14 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 
 - **Uploading Files:** CSV files from the `mock_data/` directory are uploaded to the source bucket.
 
-- **Configuring IAM Roles:** Permissions are set up to allow Glue to interact with S3.
+- **Configuring IAM Roles:** Permissions are set up to allow Glue and Lambda to interact with S3.
 
 - **Setting Up AWS Glue:** 
   - A database catalogs the data schema.
   - A crawler detects and updates the schema.
   - A job converts CSV files into Parquet format while making the necessary adjustments to the data structure.
 
-- **Configuring Triggers:** Automates workflows to run on file uploads to the source bucket.
+- **Configuring Triggers and Lambda:** Automates workflows to run on file uploads to the source bucket.
 
 - **Setting Up Athena:** A query is created in Amazon Athena to directly consume and analyze Parquet data stored in S3.
 

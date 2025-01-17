@@ -49,6 +49,7 @@ resource "aws_glue_job" "aws_glue_job" {
 resource "aws_glue_trigger" "aws_job_trigger" {
   name = "${var.prefix}-job-trigger"
   type = "CONDITIONAL"
+  enabled = true
 
   predicate {
     conditions {
@@ -61,6 +62,7 @@ resource "aws_glue_trigger" "aws_job_trigger" {
   actions {
     job_name = aws_glue_job.aws_glue_job.name
   }
+
 }
 
 resource "aws_glue_crawler" "aws_target_crawler" {
