@@ -55,4 +55,11 @@ module "lambda" {
   source_bucket     = module.s3.bucket_names[0]
   source_bucket_arn = module.s3.source_bucket_arn
   lambda_role_arn   = module.iam.lambda_role_arn
+
+  depends_on = [
+    module.s3,
+    module.glue,
+    module.iam
+  ]
+
 }
