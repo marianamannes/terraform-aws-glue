@@ -5,10 +5,10 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 ---
 
 ## Architecture
-<img src="img/architecture.png">
+<img src="img/architecture.jpeg">
 
 <details>
-  <summary> <b>Project Implementation Details</b> </summary>
+  <summary> Project Implementation Details </summary>
 
 - **Configuring S3 Backend and DynamoDB for Locks:** Set up an S3 bucket to store Terraform state files and a DynamoDB table to manage state locking.
 
@@ -35,35 +35,52 @@ This project applies IaC with Terraform to manage the infrastructure for an ETL 
 
 ## How to run the project
 
-### Local Setup
-1. Clone the Repository
-   
-   ```bash
-   git clone https://github.com/marianamannes/terraform-aws-glue
-   cd terraform-aws-glue
-   ```
-2. Install Prerequisites 
-   - [Terraform](https://developer.hashicorp.com/terraform/downloads) (version >= 1.10.0)
-   - [AWS CLI](https://aws.amazon.com/cli/) (version >= 2.15.23)
-3. Configure AWS CLI
-   ```bash
-    aws configure
-   ```
-4. Initialize Terraform Backend
-   ```bash
-    cd terraform/modules/remote-state
-    terraform init
-    terraform apply
-   ```
-5. Apply changes
-   ```bash
-    cd ../../
-    terraform init
-    terraform apply
-   ```
-5. Query transformed data with Athena
+<details>
+  <summary> Local setup </summary>
 
-   <img src="img/athena.png">
+  1. Clone the Repository
+     
+     ```bash
+     git clone https://github.com/marianamannes/terraform-aws-glue
+     cd terraform-aws-glue
+     ```
+  2. Install Prerequisites 
+     - [Terraform](https://developer.hashicorp.com/terraform/downloads) (version >= 1.10.0)
+     - [AWS CLI](https://aws.amazon.com/cli/) (version >= 2.15.23)
+  3. Configure AWS CLI
+     ```bash
+      aws configure
+     ```
+  4. Initialize Terraform Backend
+     ```bash
+      cd terraform/modules/remote-state
+      terraform init
+      terraform apply
+     ```
+  5. Apply changes
+     ```bash
+      cd ../../
+      terraform init
+      terraform apply
+     ```
+  6. Query transformed data with Athena
+
+     <img src="img/athena.png">
+
+</details>
+
+<details>
+  <summary> Github Actions </summary>
+
+  1. Set up Repository Secrets
+     
+     - AWS_SECRET_ACCESS_KEY
+     - AWS_ACCESS_KEY_ID
+     - AWS_REGION
+    
+  2. After running locally, push to the main branch to automatically apply Terraform changes.
+
+</details>
 
 ---
 
