@@ -1,6 +1,7 @@
 output "bucket_names" {
   description = "list of names of the created s3 buckets"
   value       = aws_s3_bucket.buckets[*].bucket
+  sensitive = true
 }
 
 output "uploaded_files" {
@@ -16,4 +17,5 @@ output "glue_script" {
 output "source_bucket_arn" {
   value = aws_s3_bucket.buckets[0].arn
   description = "arn of the source bucket"
+  sensitive = true
 }

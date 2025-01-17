@@ -1,6 +1,7 @@
 variable "account_id" {
   type        = string
   description = "aws account id"
+  sensitive = true
 }
 
 variable "prefix" {
@@ -11,12 +12,14 @@ variable "prefix" {
 variable "s3_bucket_names" {
   type        = list(string)
   description = "list of names for the s3 buckets"
+  sensitive = true
 }
 
 variable "mock_data_files" {
   type        = list(string)
   description = "list of files to upload to the source bucket"
 }
+
 
 variable "mock_data_path" {
   type        = string

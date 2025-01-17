@@ -1,6 +1,7 @@
 variable "account_id" {
   type        = string
   description = "aws account id"
+  sensitive = true
 }
 
 variable "prefix" {
